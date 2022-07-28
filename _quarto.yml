@@ -2,6 +2,10 @@ project:
   type: website
   output-dir: docs
 
+execute: 
+  echo: false
+  warning: false
+
 website:
   title: "CCHA sampling effort"
   sidebar:
@@ -27,5 +31,5 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
+editor: source
 
