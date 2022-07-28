@@ -1,0 +1,94 @@
+---
+title: "Richness by zone"
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(shiny)
+library(downloadthis)
+library(here)
+```
+
+These plots show richness estimates for different zones with a reduction of sample effort.  The lines show the estimated reduction in the richness estimate for each site and the thick line is the average trend across all sites for each zone (points are not shown to reduce clutter).  The panels are arranged based on the greatest percent reduction in richness from full to minimum effort across all sites in a zone.
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/richzone.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/richzone.jpg'))
+```
+
+This plot is the same as above, except richness estimates are scaled as a percentage of the total. This allows for a comparison of a reduction in the estimate independent of the overall species richness.  
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/richzoneper.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/richzoneper.jpg'))
+```
+
+This plot combines results from the previous.  The lines are each solid black line from the above plot as the average reduction in the richness estimates for all sites in each zone.  The line thickness is in proportion to the average total species richness for all sites in a zone at full sampling effort.  
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/richzonesum.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/richzonesum.jpg'))
+```
+
+There is strong evidence that a greater reduction in species richness is expected at zones with higher richness. 
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/richzoneloss.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+#| out.width: '80%'
+#| fig.align: 'center'
+knitr::include_graphics(here('figs/richzoneloss.jpg'))
+```

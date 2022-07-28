@@ -1,0 +1,54 @@
+---
+title: "Frequency occurrence"
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(shiny)
+library(downloadthis)
+library(here)
+```
+
+The plot below shows the estimated change in frequency occurrence with reduced sample effort at each site and sample year. Each line shows a different species (labels are not included to reduce plot clutter).  The points are sized in proportion to the variance across the random subsamples at the specified level of effort.   
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/foex.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/foex.jpg'))
+```
+
+Variance of frequency occurrence with each random subsample shows an increase with a reduction in sample effort.  The increase in the variance of frequency occurrence depends on the actual frequency occurrence estimate with complete sample effort.  The model below shows that species with higher frequency occurrence will have greater variation in the estimate with reductions in sample effort.  The x-axis shows the initial frequency occurrence and the y-axis shows the final variance at 10 m sampling.
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/fovarex.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+#| out.width: '70%'
+#| fig.align: 'center'
+knitr::include_graphics(here('figs/fovarex.jpg'))
+```

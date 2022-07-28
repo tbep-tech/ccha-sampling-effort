@@ -2,12 +2,23 @@ project:
   type: website
 
 website:
-  title: "ccha-sampling-effort"
-  navbar:
-    left:
+  title: "CCHA sampling effort"
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: subsampling.qmd
+        text: Sub-sampling scheme
+      - section: "Results"
+        contents:
+          - href: richness.qmd
+          - href: richnesszone.qmd
+          - href: frequencyoccurrence.qmd
+          - href: zones.qmd
+          - href: elevation.qmd
+      - href: conclusions.qmd
 
 format:
   html:

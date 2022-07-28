@@ -1,0 +1,42 @@
+---
+title: "Sub-sampling scheme"
+editor: visual
+execute: 
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(shiny)
+library(downloadthis)
+library(here)
+```
+
+All existing CCHA vegetation surveys were sub-sampled from the existing effort of sample plots every half meter.  The plot below shows an example of the sub-sampling scheme, where effort was reduced in increments of a half meter, starting from the complete survey to an upper limit of sampling every ten meters.  For simplicity, the plot shows sub-sampling up to every three meters for a hypothetical 30 meter transect (transect exceed 100 meters at all site).  
+
+The existing surveys were sub-sampled at the specified meter interval for every unique subset (or replicate) that was possible.  For example, two unique replicates can be created with sub-sampling every one meter, three every 1.5 meters, etc.  
+
+The large red points show which of the existing survey points were sub-sampled for the specified sub-sample distance.  For each site and sample year, the vegetation transect was sub-sampled following the scheme below (sub-sampling up to ten meters) and relevant habitat summaries were estimated.  The top row represents the complete transect, or the "truth". 
+
+__Note__: Although it appears that the entire original transect is sampled across all replicates, the results from each replicate are averaged as independent samples appropriate for the selected effort. 
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/subsampex.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/subsampex.jpg'))
+```

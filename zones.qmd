@@ -1,0 +1,79 @@
+---
+title: "Zone distances"
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(shiny)
+library(downloadthis)
+library(here)
+```
+
+Estimates of the counts and distances for each zone along the transects are shown below for reductions in sample effort.  The first plot shows the number of unique zones identified with down-sampling.  All zones are identified at each site for all levels of sample effort.
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/zonecnt.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/zonecnt.jpg'))
+```
+
+The estimated length of each zone at each site is shown below with reductions in sample effort.  Each line represents a unique zone.  Estimated zone lengths do not change with reduced effort.  Points are sized by the variance of the estimates across the random subsamples at level of sample effort. Variance (or uncertainty) in the zone distances increases with reduced effort.
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/zonedst.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/zonedst.jpg'))
+```
+
+The variance (or uncertainy) of the distance estimates increases with reductions in effort, but the increase is not linear.  An example for Big Bend - TECO is shown below.  Although variance increase across the zones, the variance estimates fall to zero when the actual zone distance (facet label shown in meters) is divisible by the sample interval with no remainder.  Points of maximum variance are between intervals with no remainder. 
+
+```{r}
+column(12, 
+  column(3, 
+    download_file(
+      path = here('figs/zonevarex.jpg'),
+      button_label = "Download plot",
+      button_type = "warning",
+      has_icon = TRUE,
+      icon = "fa fa-save"
+      )
+  )
+)
+```
+
+```{r}
+knitr::include_graphics(here('figs/zonevarex.jpg'))
+```
+
+Detailed results for each site are shown below.  The shaded areas represent the true zones and the points show the estimates of the starting location for each zone at the specified sampling interval.  The horizontal bars show the variance across the sub-samples for each level of sampling effort. 
+
+```{r}
+fls <- list.files(here('figs'), pattern = 'zoneest', full.names = T)
+knitr::include_graphics(fls)
+```
