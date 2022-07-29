@@ -8,9 +8,14 @@ execute:
 
 website:
   title: "CCHA sampling effort"
+  repo-url: https://github.com/tbep-tech/ccha-sampling-effort
+  site-url: https://tbep-tech.github.io/ccha-sampling-effort
   sidebar:
     style: "floating"
     search: true
+    tools: 
+      - icon: github
+        href: https://github.com/tbep-tech/ccha-sampling-effort
     contents:
       - href: index.qmd
         text: Home
@@ -24,12 +29,18 @@ website:
           - href: zones.qmd
           - href: elevation.qmd
       - href: conclusions.qmd
-
+    
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true
+    code-tools: 
+      source: repo
 
 editor: source
+
+filters:
+    - lightbox
+    
+lightbox: auto
 
