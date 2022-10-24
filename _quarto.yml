@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+  post-render: mv docs/report/report-draft.docx report/
 
 execute: 
   echo: false

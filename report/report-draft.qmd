@@ -1,0 +1,287 @@
+---
+format: 
+  docx:
+    reference-doc: my_styles.docx
+    number-sections: true
+    toc: true
+title: "Recommendations for Sampling Effort of Vegetation Communities in the Critical Coastal Habitat Assessment"
+author: 
+  - Marcus W. Beck, Tampa Bay Estuary Program, St. Petersburg, Florida 33701 USA
+  - Kara R. Radabaugh, Fish & Wildlife Research Institute, St. Petersburg, Florida 33701 USA
+  - Kerry E. Flaherty-Walia, Fish & Wildlife Research Institute, St. Petersburg, Florida 33701 USA
+date: November, 2022
+bibliography: refs.bib
+csl: frontiers-in-ecology-and-evolution.csl
+
+execute: 
+  echo: false
+  warning: false
+  ft.keepnext: false
+  ft.align: left
+  fig-align: "center"
+---
+
+```{r, results = 'hide'}
+library(knitr)
+library(here)
+```
+
+\newpage
+
+## Acknowledgements {.unnumbered}
+
+This document relies exclusively on data collected by field crews during the phase I (2015 and 2016 sampling) and phase II (2018 sampling) Critical Coastal Habitat Assessments.  We acknowledge the efforts undertaken in gathering these important data to inform that state of coastal habitats in the Tampa Bay estuary.  Specifically, we thank field staff from Atkins North America, Inc. (David Loy, Renee Price), Environmental Science Associates, Inc. (Doug Robison), and the Fish and Wildlife Research Institute of the Florida Fish and Wildlife Conservation Commission (Kara Radabaugh, Ryan Moyer). We also thank Pamela Latham for discussions that informed the methods described herein. 
+
+\newpage
+
+## Executive Summary {.unnumbered}
+
+\newpage
+
+## Introduction
+
+Native coastal habitats provide multiple ecosystem services for natural communities and human-based uses of the resources.  Climate change and sea-level rise are critical threats to the health and resilience of these communities. Changes with projected estimates of sea-level rise are expected to manifest as substantial habitat loss or alteration and landward migration with changes in salinity.  Mangroves, salt marshes, and salt barrens are collectively referred to as emergent tidal wetlands and are expected to be disproportionately altered by climate change.  Alteration of these communities may contribute to reduced shoreline stability, increased vulnerability to flooding, changes in water quality, and decreases in fisheries production.  These negative changes may translate to loss of recreational or economic opportunities of those that live in or near coastal environments.      
+
+Projections of sea-level rise in the Tampa Bay region suggest an increase of 
+ 
+
+-   CCHA goals [@tbep0312;@tbep0517;@tbep0817;@tbep0519]
+-   Vegetation sampling
+-   Goals of analysis
+
+This report evaluates the effect of reducing sampling effort for vegetation transects at all long-term monitoring sites for the Critical Coastal Habitat Assessment in Tampa Bay. Currently, sampling is conducted every half meter and the power analysis evaluates the effect of reduced effort up to sampling every ten meters, or a 95% reduction from the current effort. Scenarios evaluating more than 50% (1 meter sampling) or 66% (1.5 meter sampling) reduction in effort are unrealistic, but still useful to understand the effects on quantitative measures of habitat. These measures include:
+
+1.  Total species richness at a site
+2.  Total species richness at a site by vegetation zone
+3.  Species frequency occurrence at a site
+4.  Vegetation zone distances by site
+5.  Elevation at which 95% of key species occur (e.g., mangroves)
+
+## Methods
+
+Current sampling design in @fig-transectdesign. 
+
+```{r}
+#| fig-cap: "Schematic of the sampling design at all CCHA sites [from @tbep0517]. Vegetation quadrats are placed every half meter along the main transect from the water to the landward end"  
+#| label: fig-transectdesign
+knitr::include_graphics(here('figs/transectdesign.jpg'))
+```
+
+All existing CCHA vegetation surveys were sub-sampled from the existing effort of sample plots every half meter. @fig-subsampex shows an example of the sub-sampling scheme, where effort was reduced in increments of a half meter, starting from the complete survey to an upper limit of sampling every ten meters. For simplicity, the plot shows sub-sampling up to every three meters for a hypothetical 30 meter transect (transect exceed 100 meters at all site).
+
+The existing surveys were sub-sampled at the specified meter interval for every unique subset (or replicate) that was possible. For example, two unique replicates can be created with sub-sampling every one meter, three every 1.5 meters, etc.
+
+The large red points show which of the existing survey points were sub-sampled for the specified sub-sample distance. For each site and sample year, the vegetation transect was sub-sampled following the scheme below (sub-sampling up to ten meters) and relevant habitat summaries were estimated. The top row represents the complete transect, or the "truth".
+
+**Note**: Although it appears that the entire original transect is sampled across all replicates, the results from each replicate are averaged as independent samples appropriate for the selected effort.
+
+```{r}
+#| fig.cap: "Schematic of the method for creating sub-samples of existing transect data.  The full survey with sampling at 0.5 meter intervals is shown at the top, wiht increasing sampling intervals from top to bottom.  Replicates for each sample interval show the unique points that were selected."
+#| label: fig-subsampex
+knitr::include_graphics(here('figs/subsampex.jpg'))
+```
+
+The relative reduction in effort associated with each half-meter increase along a transect is with @fig-releff. 
+
+```{r}
+#| fig-cap: "Percent reductions in sample effort as a function of the sample interval.  For example, sampling every one meter represent a 50% reduction in effort form the original sample at 0.5 meters."
+#| label: fig-releff
+knitr::include_graphics(here('figs/releff.jpg'))
+```
+
+-   Down-sampling methods
+-   Metrics assessed
+
+For most metrics, characteristics of the data were evaluatd to identify potential factors that contributed to the greatest changes with reductions in effort.  For example, estimates at sites with many rare species and potentially higher species richness may be disproportionately affected by reductions in sample effort.  Metrics were evaluated as to total change and the relative percent changes to identify these potential effects.  Metrics were also evaluated by comparing total change from 0.5 meter to 10 meter sampling as a function of site-level characteristics, e.g., total richness.  
+
+## Results
+
+### Richness estimates
+
+These plots show the effect of down-sampling on richness estimates at each site, grouped by year of sampling. @fig-richex shows points as the average estimate at each down-sampled survey for the sampling distance shown on the x-axis. The lines are polynomial smooths to show the trend. The size of each point is in proportion to the variance of the species richness estimate for each random sub-sample at the specified level of sampling. Facets are arranged based on the greatest reduction in species richness as a percentage of the total.
+
+```{r}
+#| fig-cap: "Reductions in species richness estimates with sampling distance for all sites and each year of sampling.  Point size shows the variance across the replicates for each level of sampling effort."
+#| label: fig-richex
+knitr::include_graphics(here('figs/richex.jpg'))
+```
+
+@fig-richperex is similar to @fig-richex, but richness is scaled as a percentage of the total at full sample effort. This allows for a comparison of a reduction in the estimate independent of the overall species richness. That is, the sensitivity of the richness estimate at a site may vary depending on overall species richness.
+
+```{r}
+#| fig-cap: "Relative percent reductions in species richness estimates with sampling distance for all sites and each year of sampling.  Point size shows the variance across the replicates for each level of sampling effort."
+#| label: fig-richperex
+knitr::include_graphics(here('figs/richperex.jpg'))
+```
+
+There is some evidence that a greater reduction in species richness is expected at sites with higher richness, although the model is insignificant (@fig-richloss).
+
+```{r}
+#| fig-cap: "Total percent loss in species richness estimates from 0.5 to 10 meter sampling as a function of actual species richness at 0.5 meter sampling."
+#| label: fig-richloss
+knitr::include_graphics(here('figs/richloss.jpg'))
+```
+
+### Richness estimates by zone
+
+@fig-richzone shows richness estimates for different zones at each site with a reduction of sample effort. The lines show the estimated reduction in the richness estimate for each site and the thick line is the average trend across all sites for each zone (points are not shown to reduce clutter). The panels are arranged based on the greatest percent reduction in richness from full to minimum effort across all sites in a zone.
+
+```{r}
+#| fig-cap: "Reductions in species richness estimates with sampling distance for each unique vegetation zone across all sites.  Each line is a unique site and the black line shows the average trend for the zone.  Panels are arranged based on the greatest percent reduction in richness from full to minimum effort."
+#| label: fig-richzone
+knitr::include_graphics(here('figs/richzone.jpg'))
+```
+
+@fig-richzoneper is the same as @fig-richzone, except richness estimates are scaled as a percentage of the total. This allows for a comparison of a reduction in the estimate independent of the overall species richness.
+
+```{r}
+#| fig-cap: "Relative percent reductions in species richness estimates with sampling distance for each unique vegetation zone across all sites.  Each line is a unique site and the black line shows the average trend for the zone.  Panels are arranged based on the greatest percent reduction in richness from full to minimum effort."
+#| label: fig-richzoneper
+knitr::include_graphics(here('figs/richzoneper.jpg'))
+```
+
+@fig-richzonesum combines results from the previous plots into a single panel. The lines are each solid black line from the above plot as the average reduction in the richness estimates for all sites in each zone. The line thickness is in proportion to the average total species richness for all sites in a zone at full sampling effort.
+
+```{r}
+#| fig-cap: "Relative percent reduction in species richness with sampling distance for each unique vegetation zone across all sites.  Each line represents the average percent reduction for each occurrence of a zone."
+#| label: fig-richzonesum
+knitr::include_graphics(here('figs/richzonesum.jpg'))
+```
+
+There is strong evidence that a greater reduction in species richness is expected at zones with higher richness (@fig-richzoneloss).
+
+```{r}
+#| fig-cap: "Total percent loss of richness from 0.5 meter to 10 meter sampling as a function of average species richness within a zone."
+#| label: fig-richzoneloss
+knitr::include_graphics(here('figs/richzoneloss.jpg'))
+```
+
+### Elevation of key species
+
+@fig-elevex shows elevation estimates for mangrove species (black mangrove *Avicennia germinans*, white mangrove *Laguncularia racemosa*, red mangrove *Rhizophore mangle*) with reductions in sampling every 0.5 m to every 10 m. For each level of sampling effort, the estimated elevation at which 95% of each species occurs is shown for each site. The variance in the estimated elevation is also shown for the repeated subsamples at each level of effort. Overall, the elevation estimates show a decrease with reductions in effort, although differences are observed for each species and site.
+
+```{r}
+#| fig-cap: "Elevation estimates of three mangrove species with sampling distance at each site. Point size shows the variance across the replicates for each level of sampling effort."
+#| label: fig-elevex
+knitr::include_graphics(here('figs/elevex.jpg'))
+```
+
+@fig-elevperex is similar to @fig-elevex, except the total elevation change for each species at each site is shown as percent change. This provides a comparison of changes where differences may be observed by starting elevation above sea level.
+
+```{r}
+#| fig-cap: "Reletive elevation estimates of three mangrove species as a percent change from the initial value at 0.5 meters to 10 meters sampling. Point size shows the variance across the replicates for each level of sampling effort."  
+#| label: fig-elevperex
+knitr::include_graphics(here('figs/elevperex.jpg'))
+```
+
+@fig-foperelevex shows that the change in the elevation estimate is a function of frequency occurrence. Species at a site with greater frequency occurrence are impacated less by reductions in sampling effort.
+
+```{r}
+#| fig-cap: "Total percent change in elevation estimates for three mangrove species from 0.5 meter to 10 meter sampling as a function of frequency occurrence of each species at 0.5 meters ampling."
+#| label: fig-foperelevex
+knitr::include_graphics(here('figs/foperelevex.jpg'))
+```
+
+Similar to @fig-foperelevex, @fig-fovarelevex shows that the variance (or certainty) in the elevation estimate is a function of frequency occurrence. Elevation estimates are more precise for species at a site with greater frequency occurrence.
+
+```{r}
+#| fig-cap: "Variance of the elevation esimates of three mangrove species at 10 meter sampling as a function of actual frequency occurrence."
+#| label: fig-fovarelevex
+knitr::include_graphics(here('figs/fovarelevex.jpg'))
+```
+
+### Zone identification
+
+Estimates of the counts and distances for each zone along the transects are shown below for reductions in sample effort. @fig-zonecnt shows the number of unique zones identified with down-sampling. All zones are identified at each site for all levels of sample effort.
+
+```{r}
+#| fig-cap: "Number of unique zones identified at each site from 0.5 meter to 10 meter sampling."
+#| label: fig-zonecnt
+knitr::include_graphics(here('figs/zonecnt.jpg'))
+```
+
+@fig-zonedst shows the estimated length of each zone at each site with reductions in sample effort. Each line represents a unique zone. Estimated zone lengths do not change with reduced effort. Points are sized by the variance of the estimates across the random subsamples at level of sample effort. Variance (or uncertainty) in the zone distances increases with reduced effort.
+
+```{r}
+#| fig-cap: "Total distance of each zone at each site from 0.5 meter to 10 meter sampling. Point size shows the variance across the replicates for each level of sampling effort."
+#| label: fig-zonedst
+knitr::include_graphics(here('figs/zonedst.jpg'))
+```
+
+The variance (or uncertainy) of the distance estimates increases with reductions in effort, but the increase is not linear. An example for Big Bend - TECO is shown in @fig-zonevarex. Although variance increases across the zones, the variance estimates fall to zero when the actual zone distance (facet label shown in meters) is divisible by the sample interval with no remainder. Points of maximum variance are between intervals with no remainder.
+
+```{r}
+#| fig-cap: "An example of the variance of the zone distances for each zone at the Big Bend - TECO site from 0.5 meter to 10 meter sampling."
+#| label: fig-zonevarex
+knitr::include_graphics(here('figs/zonevarex.jpg'))
+```
+
+Detailed results for each site are shown in Figures [-@fig-zoneestbb], [-@fig-zoneestcb], [-@fig-zoneestfd], [-@fig-zoneesthp], [-@fig-zoneesthh], [-@fig-zoneestlmr], [-@fig-zoneestm], [-@fig-zoneestutbp], and [-@fig-zoneestwi]. The shaded areas represent the true zones and the points show the estimates of the starting location for each zone at the specified sampling interval. The horizontal bars show the variance across the sub-samples for each level of sampling effort.
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Big Bend - Teco for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestbb 
+knitr::include_graphics(here('figs/zoneest_Big Bend - TECO.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Cockroach Bay for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestcb 
+knitr::include_graphics(here('figs/zoneest_Cockroach Bay.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Fort DeSoto for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestfd 
+knitr::include_graphics(here('figs/zoneest_Fort DeSoto.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Harbor Palms for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneesthp 
+knitr::include_graphics(here('figs/zoneest_Harbor Palms.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Hidden Harbor for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneesthh 
+knitr::include_graphics(here('figs/zoneest_Hidden Harbor.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at LIttle Manatee River for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestlmr 
+knitr::include_graphics(here('figs/zoneest_Little Manatee River.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Mosaic for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestm 
+knitr::include_graphics(here('figs/zoneest_Mosaic.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Upper Tampa Bay Park for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestutbp 
+knitr::include_graphics(here('figs/zoneest_Upper Tampa Bay Park.jpg'))
+```
+
+```{r}
+#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Weedon Island for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at 0.5 meter sampling."
+#| label: fig-zoneestwi 
+knitr::include_graphics(here('figs/zoneest_Weedon Island.jpg'))
+```
+
+## Conclusions and Recommendations
+
+-   Richness estimates for a site are reduced with lower sample effort
+-   The amount of reduction in the richness estimated was weakly associated with total species richness at a site
+-   Richness estimates for a zone are reduced with lower sample effort
+-   Richness estimates will be systematically lower with reduced effort for zones with overall higher richness. These include zones...
+-   Frequency occurrence estimates for individual species will not be systematically different at lower sample effort, but the estimates are imprecise
+-   Species with higher frequency occurrence will have less precise estimates with reduced effort compared to those with lower frequency occurrence
+-   Zone identification at each site is not affected by sample effort, although distance estimates decrease slightly.\
+-   Precision of the distance estimates for each zone decreases with reductions in sample effort, but the decrease is not linear and is affected by the actual zone length and sample interval
+-   The estimated elevation at which mangrove species are observed will decrease with reductions in sampling effort. The magnitude and uncertainty of the reduction will increase for species with lower frequency occurrence at a site.
+
+## References {.unnumbered}
