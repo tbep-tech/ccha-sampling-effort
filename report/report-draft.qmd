@@ -30,7 +30,7 @@ library(here)
 
 ## Acknowledgements {.unnumbered}
 
-This document relies exclusively on data collected by field crews during the phase I (2015 and 2016 sampling) and phase II (2018 sampling) Critical Coastal Habitat Assessments.  We acknowledge the efforts undertaken in gathering these important data to inform that state of coastal habitats in the Tampa Bay estuary.  Specifically, we thank field staff from Atkins North America, Inc. (David Loy, Renee Price), Environmental Science Associates, Inc. (Doug Robison), and the Fish and Wildlife Research Institute of the Florida Fish and Wildlife Conservation Commission (Kara Radabaugh, Ryan Moyer). We also thank Pamela Latham for discussions that informed the methods described herein. 
+This document relies exclusively on data collected by field crews during the phase I (2015 and 2016 sampling) and phase II (2018 sampling) Critical Coastal Habitat Assessments. We acknowledge the efforts undertaken in gathering these important data to inform that state of coastal habitats in the Tampa Bay estuary. Specifically, we thank field staff from Atkins North America, Inc. (David Loy, Renee Price), Environmental Science Associates, Inc. (Doug Robison), and the Fish and Wildlife Research Institute of the Florida Fish and Wildlife Conservation Commission (Kara Radabaugh, Ryan Moyer). We also thank Pamela Latham for discussions that informed the methods described herein.
 
 \newpage
 
@@ -40,26 +40,26 @@ This document relies exclusively on data collected by field crews during the pha
 
 ## Introduction
 
-Native coastal habitats provide multiple ecosystem services for natural communities and human-based uses of the resources.  Climate change and sea-level rise are critical threats to the health and resilience of these communities. Changes with projected estimates of sea-level rise are expected to manifest as substantial habitat loss or alteration and landward migration with changes in salinity.  Mangroves, salt marshes, and salt barrens are collectively referred to as emergent tidal wetlands and are expected to be disproportionately altered by climate change.  Alteration of these communities may contribute to reduced shoreline stability, increased vulnerability to flooding, changes in water quality, and decreases in fisheries production.  These negative changes may translate to loss of recreational or economic opportunities of those that live in or near coastal environments.      
+Native coastal habitats provide multiple ecosystem services for natural communities and human-based uses of the resources. Climate change and sea-level rise are critical threats to the health and resilience of these communities. Habitat changes with projected estimates of sea-level rise are expected to manifest as substantial habitat loss or alteration and landward migration of intertidal species with changes in salinity. Mangroves, salt marshes, and salt barrens are collectively referred to as emergent tidal wetlands and are expected to be disproportionately altered by climate change [@tbep0312; @Cavanaugh19]. Alteration of these communities may contribute to reduced shoreline stability, increased vulnerability to flooding, changes in water quality, and decreases in fisheries production [@kennedy1990; @duarte2013; @gilby2020]. These negative changes may translate to losses of recreational or economic opportunities of those that live in or near coastal environments [@spalding2014;@toimil2018].
 
-Projections of sea-level rise in the Tampa Bay region suggest an increase of 
- 
+The Tampa Bay region (Florida, USA) has been identified as one of the most vulnerable areas worldwide to the effects of climate change due to its shallow topography and dense urban population living near the coast [@tbep0714;@fu2016]. Projections of sea-level rise for Tampa Bay suggest an increase of two to 8.5 feet by the year 2100 [@tbep0519], potentially inundating low-lying coastal areas with emergent tidal wetlands. Numerous efforts to track and plan for the projected effects of sea-level rise have been the focus of regional managers in recent decades. The Tampa Bay Estuary Program works to develop science-based solutions to managing the estuary by creating consensus among regional managers on approaches for maintaining a healthy bay and watershed. The Habitat Master Plan (HMP) [@tbep0720] provides coverage targets and goals for all native habitats in the bay, with specific focus on intertidal habitats that are especially vulnerable to climate change and coastal development. These targets and goals are based on coverages that are likely to be achieved based on past restoration efforts, available remaining areas for acquisition, and trajectories of land use change for the prior decades.
 
--   CCHA goals [@tbep0312;@tbep0517;@tbep0817;@tbep0519]
--   Vegetation sampling
--   Goals of analysis
+The Critical Coastal Habitat Assessment (CCHA) complements the HMP by providing high-resolution surveys of emergent tidal wetlands [@tbep0517;@tbep0817]. Unlike the HMP that is based primarily on remote sensing products, the CCHA provides field-based estimates of coastal habitats at fixed sites for selected locations around Tampa Bay. Each of nine sites are sampled every 3-5 years using a transect design extending landward from the water to survey vegetation and tree communities, surface elevation, soil characteristics, interstitial porewater salinity, and faunal communities. The surveys also track discrete vegetation zones (e.g., mangrove fringe, coastal uplands, etc.) to assess potential landward shifts or reductions in habitats based on anticipated changes from sea-level rise. To date, two rounds of sampling have been completed. The first baseline surveys were conducted in 2015 and 2016 [@tbep0517; @tbep0817] and a second set of surveys was conducted in 2018.
 
-This report evaluates the effect of reducing sampling effort for vegetation transects at all long-term monitoring sites for the Critical Coastal Habitat Assessment in Tampa Bay. Currently, sampling is conducted every half meter and the power analysis evaluates the effect of reduced effort up to sampling every ten meters, or a 95% reduction from the current effort. Scenarios evaluating more than 50% (1 meter sampling) or 66% (1.5 meter sampling) reduction in effort are unrealistic, but still useful to understand the effects on quantitative measures of habitat. These measures include:
+The CCHA surveys are expected to be conducted over the next several decades based on the timeline of likely changes to coastal habitats from climate change [@tbep0312;@tbep0519]. The feasibility of continued surveys depends on the relative effort of field crews in collecting useful information to inform understanding of regional effects of sea-level rise and temperature change. The vegetation surveys are a core component of the field efforts that collect information on species richness and cover at each site and within each vegetation zone. Current effort is time-intensive and requires sampling vegetation within a 0.25 m$^2$ quadrat every half meter along a transect, where the mean length of transects is approximately 150 meters. Understanding the quality of data provided by the vegetation surveys at reduced sampling effort will inform the level of effort required for future sampling.
+
+This report evaluates the effect of reduced sample effort on key metrics for vegetation transects at all CCHA monitoring sites in Tampa Bay. A central hypothesis is that the current sampling effort using quadrats every half meter is not necessary to provide a robust assessment of the vegetation communities and a reduction of effort is possible without sacrificing the quality of information in the survey. A recommendation of reduced effort is expected to increase the likelihood that surveys will be completed in the future if less time and resources are required for field sampling. A desktop analysis was conducted to sub-sample the existing surveys from 1 meter (50% reduction in effort) to 10 meter (95% reduction in effort) sampling at half meter intervals. Scenarios evaluating more than 50% (1 meter sampling) or 66% (1.5 meter sampling) reduction in effort are unrealistic, but still useful to understand the effects on quantitative measures of habitat. Key metrics describing the vegetation communities were evaluated for each sub-sampled survey and compared to the original estimates at 0.5 meter sampling. Key metrics were evaluated based on information that was considered relevant to evaluate the long-term effects of climate change. These metrics included:
 
 1.  Total species richness at a site
 2.  Total species richness at a site by vegetation zone
-3.  Species frequency occurrence at a site
+3.  Elevation at which 95% of key species occur (e.g., mangroves)
 4.  Vegetation zone distances by site
-5.  Elevation at which 95% of key species occur (e.g., mangroves)
+
+Recommendations are provided for the appropriate sampling interval of future surveys.
 
 ## Methods
 
-Current sampling design in @fig-transectdesign. 
+Current sampling design in @fig-transectdesign.
 
 ```{r}
 #| fig-cap: "Schematic of the sampling design at all CCHA sites [from @tbep0517]. Vegetation quadrats are placed every half meter along the main transect from the water to the landward end"  
@@ -81,7 +81,7 @@ The large red points show which of the existing survey points were sub-sampled f
 knitr::include_graphics(here('figs/subsampex.jpg'))
 ```
 
-The relative reduction in effort associated with each half-meter increase along a transect is with @fig-releff. 
+The relative reduction in effort associated with each half-meter increase along a transect is with @fig-releff.
 
 ```{r}
 #| fig-cap: "Percent reductions in sample effort as a function of the sample interval.  For example, sampling every one meter represent a 50% reduction in effort form the original sample at 0.5 meters."
@@ -92,7 +92,7 @@ knitr::include_graphics(here('figs/releff.jpg'))
 -   Down-sampling methods
 -   Metrics assessed
 
-For most metrics, characteristics of the data were evaluatd to identify potential factors that contributed to the greatest changes with reductions in effort.  For example, estimates at sites with many rare species and potentially higher species richness may be disproportionately affected by reductions in sample effort.  Metrics were evaluated as to total change and the relative percent changes to identify these potential effects.  Metrics were also evaluated by comparing total change from 0.5 meter to 10 meter sampling as a function of site-level characteristics, e.g., total richness.  
+For most metrics, characteristics of the data were evaluatd to identify potential factors that contributed to the greatest changes with reductions in effort. For example, estimates at sites with many rare species and potentially higher species richness may be disproportionately affected by reductions in sample effort. Metrics were evaluated as to total change and the relative percent changes to identify these potential effects. Metrics were also evaluated by comparing total change from 0.5 meter to 10 meter sampling as a function of site-level characteristics, e.g., total richness.
 
 ## Results
 
@@ -283,5 +283,7 @@ knitr::include_graphics(here('figs/zoneest_Weedon Island.jpg'))
 -   Zone identification at each site is not affected by sample effort, although distance estimates decrease slightly.\
 -   Precision of the distance estimates for each zone decreases with reductions in sample effort, but the decrease is not linear and is affected by the actual zone length and sample interval
 -   The estimated elevation at which mangrove species are observed will decrease with reductions in sampling effort. The magnitude and uncertainty of the reduction will increase for species with lower frequency occurrence at a site.
+
+\newpage
 
 ## References {.unnumbered}
