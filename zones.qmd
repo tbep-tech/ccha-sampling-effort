@@ -51,7 +51,7 @@ column(12,
 knitr::include_graphics(here('figs/zonedst.jpg'))
 ```
 
-The variance (or uncertainy) of the distance estimates increases with reductions in effort, but the increase is not linear.  An example for Big Bend - TECO is shown below.  Although variance increase across the zones, the variance estimates fall to zero when the actual zone distance (facet label shown in meters) is divisible by the sample interval with no remainder.  Points of maximum variance are between intervals with no remainder. 
+The variance (or uncertainty) of the distance estimates increases with reductions in effort, but the increase is not linear.  An example for Big Bend - TECO is shown below.  Although variance increase across the zones, the variance estimates fall to zero when the actual zone distance (facet label shown in meters) is divisible by the sample interval with no remainder.  Points of maximum variance are between intervals with no remainder. 
 
 ```{r}
 column(12, 
