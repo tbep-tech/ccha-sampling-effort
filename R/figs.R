@@ -647,9 +647,15 @@ zonedsts <- downsmps %>%
   unnest(zonedst)
 
 toplo1 <- zonedsts %>% 
-  group_by(site, sampint) %>% 
+  group_by(site, sampint, rep) %>% 
   summarize(
     zonecnt = n_distinct(zonefct), 
+    .groups = 'drop'
+  ) %>% 
+  group_by(site, sampint) %>% 
+  summarize(
+    zoneave = mean(zonecnt),
+    zonevar = var(zonecnt),
     .groups = 'drop'
   )
 
@@ -662,14 +668,15 @@ thm <- theme_ipsum(base_family = fml) +
     legend.position = 'top'
   )
 
-p1 <- ggplot(toplo1, aes(x = sampint, y = zonecnt)) + 
+p1 <- ggplot(toplo1, aes(x = sampint, y = zoneave)) + 
   geom_line() + 
-  geom_point() + 
+  geom_point(aes(size = zonevar)) + 
   facet_wrap(~site) + 
   thm + 
   labs(
-    y = 'Total number of unique zones', 
+    y = 'Average number of unique zones', 
     x = 'Sampling distance every x meters',  
+    size = 'Variance with random subsample'
   )
 
 toplo2 <- zonedsts %>% 

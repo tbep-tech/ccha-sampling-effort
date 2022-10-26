@@ -11,7 +11,7 @@ library(downloadthis)
 library(here)
 ```
 
-Estimates of the counts and distances for each zone along the transects are shown below for reductions in sample effort.  The first plot shows the number of unique zones identified with down-sampling.  All zones are identified at each site for all levels of sample effort.
+Estimates of the counts and distances for each zone along the transects are shown below for reductions in sample effort.  The first plot shows the number of unique zones identified with down-sampling. Points are sized by the variance of the estimates across the random subsamples at level of sample effort. All zones are identified at each site until the length of the shortest zone is less than the sampling interval. 
 
 ```{r}
 column(12, 
