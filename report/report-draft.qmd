@@ -24,6 +24,11 @@ execute:
 ```{r, results = 'hide'}
 library(knitr)
 library(here)
+library(officer)
+library(officedown)
+library(flextable)
+
+load(file = here('data/richtab.RData'))
 ```
 
 \newpage
@@ -111,12 +116,18 @@ All analyses were conducted using the R Statistical Programming Language [@RCT22
 
 ### Richness estimates
 
-Total richness estimates at each site and for each year of sampling decreased as expected with reductions in effort (@fig-richex). The rate of reduction in the richness estimates decreased as the sampling intervals increased, in agreement with the level of effort as a percentage of the total shown in @fig-releff. Each point in @fig-richex is the average estimate across replicates for the sampling distance shown on the x-axis. The lines are polynomial smooths to show the trend and the size of each point is in proportion to the variance of the species richness estimate across the replicates. The subplots are arranged left to right, top to bottom based on the greatest reduction in species richness as a percentage of the total.
+Total richness estimates at each site and for each year of sampling decreased as expected with reductions in effort (@fig-richex). The rate of reduction in the richness estimates decreased as the sampling intervals increased, in agreement with the level of effort as a percentage of the total shown in @fig-releff. Each point in @fig-richex is the average estimate across replicates for the sampling distance shown on the x-axis. The lines are polynomial smooths to show the trend and the size of each point is in proportion to the variance of the species richness estimate across the replicates. The subplots are arranged left to right, top to bottom based on the greatest reduction in species richness as a percentage of the total. Tabular results for selected sampling intervals in @fig-richex are shown in Table `r run_reference(id = "richtab")`.
 
 ```{r}
 #| fig-cap: "Reductions in species richness estimates with sampling distance for all sites and each year of sampling.  Point size shows the variance across the replicates for each level of sampling effort."
 #| label: fig-richex
 knitr::include_graphics(here('figs/richex.jpg'))
+```
+
+```{r}
+#| tbl-cap: "Reductions in species richness estimates with selected sampling distances for all sites and each year of sampling.  The total species richness is shown for the complete survyes at half meter sampling and the mean species richness for reductions plus the percent reduction from half meter sampling in parentheses are shown in the remaining columns."
+#| label: richtab
+richtab
 ```
 
 @fig-richperex shows similar results as @fig-richex, except richness is scaled as a percentage of the total at full sampling effort. This plot allows a comparison of a reduction in the estimate independent of the overall species richness because the sensitivity of the change may vary depending on the total. The greatest percent reductions in the richness estimates with decreased sampling were observed at the Little Manatee River and Hidden Harbor sites.
@@ -275,7 +286,7 @@ knitr::include_graphics(here('figs/zoneest_Weedon Island.jpg'))
 
 An assessment of the relative sampling effort required to obtain a representative sample can inform the utility and feasibility of a long-term monitoring program. A tradeoff exists between detail and effort, where an optimal level exists between too much and too little sampling. Highly intensive surveys may not provide novel information relative to the level of effort, compared to less intensive surveys that are efficient but do not provide an accurate sample of a population. Because the CCHA is expected to continue for several decades, identifying an optimal level of effort that provides sufficient information while minimizing time and resources collecting the data is critical to longevity of the program. This report provided a quantitative assessment of an optimal level of effort for sampling the vegetation community at each of nine monitoring sites. Results from this report can be used to justify amended sampling designs for future surveys.
 
-Based on the results herein, sampling the vegetation community every meter along each transect is recommended. This level of effort is a 50% reduction in sampling from the original half meter sampling used during the first two phases of CCHA surveys. This recommendation is expected to dramatically improve overall sampling efficiency given that the vegetation transects are the most time intensive component of all CCHA sampling. All of the key metrics used to characterize the vegetation community and vegetation zones did not change dramatically from 0.5 meter to 1 meter sampling. Although richness estimates declined with decreased sampling effort, large changes at all sites were not observed at 1 meter sampling. Species likely to be missed by reduced sampling are those with low frequency occurrence [@miller2000;@zhang2019], especially within each unique vegetation zone. However, identifying rare species is not a goal of the CCHA and a general assessment of vegetation communities in emergent tidal wetlands will not be compromised at one meter sampling.
+Based on the results herein, sampling the vegetation community every meter along each transect is recommended. This level of effort is a 50% reduction in sampling from the original half meter sampling used during the first two phases of CCHA surveys. This recommendation is expected to dramatically improve overall sampling efficiency given that the vegetation transects are the most time intensive component of all CCHA sampling. All of the key metrics used to characterize the vegetation community and vegetation zones did not change dramatically from 0.5 meter to 1 meter sampling. Although richness estimates declined with decreased sampling effort, large changes at all sites were not observed at 1 meter sampling. Species likely to be missed by reduced sampling are those with low frequency occurrence [@miller2000; @zhang2019], especially within each unique vegetation zone. However, identifying rare species is not a goal of the CCHA and a general assessment of vegetation communities in emergent tidal wetlands will not be compromised at one meter sampling.
 
 The estimated elevation at which mangrove species are observed did not show consistent changes across sites by species, although a general decrease was observed. This result was unexpected and it is unclear why reduced effort resulted in lower elevation estimates as elevation generally increases along a transect and the sub-sampling method does not consistently sample lower elevations. An additional notable result was differences among the species for the elevations at 0.5 meter sampling across the sites. In general, the three mangrove species are expected to follow an elevation gradient where red mangroves are more tolerant of polyhaline conditions (18-30 ppt) and inhabit lower elevations closer to the shoreline, white mangroves are intermediate, and black mangroves are tolerant of oligohaline conditions (5-18 ppt) and inhabit higher elevations [@Odum90]. Some sites showed red mangroves at higher elevations than black mangroves, which was not expected, although these differences could be related to site-specific characteristics of the elevation gradient and porewater salinities. Regardless, the elevation metrics showed considerable changes with relative sampling effort, although they were very minor with a 50% reduction in effort at 1 meter sampling. Any changes as a function of sample effort will also be notably less for mangrove species with high frequency occurrence at a site (Figures [-@fig-foperelevex] and [-@fig-fovarelevex]).
 

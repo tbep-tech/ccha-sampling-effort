@@ -7,12 +7,15 @@ library(flextable)
 # downsampled vegetation surveys
 data(downsmps)
 
+# to remove from analysis
+rmv <- c("Unknown", "Woody Debris, none/detritus")
+
 # richness table ------------------------------------------------------------------------------
 
 rchests <- downsmps %>%
   mutate(
     spprch = map(downsmp, function(downsmp){
-      
+   
       downsmp %>%
         filter(!species %in% rmv) %>%
         pull(species) %>%
@@ -30,7 +33,7 @@ rchests <- downsmps %>%
     .groups = 'drop'
   )
 
-totab <- rchests %>% 
+rchestssum <- rchests %>% 
   mutate(
     sample = factor(paste('Year', sample))
   ) %>% 
@@ -71,7 +74,7 @@ totab <- rchests %>%
     })
   )
 
-totab1 <- toplo %>% 
+totab <- rchestssum %>% 
   select(-lofit) %>% 
   unnest('data') %>% 
   select(-spprchvar) %>% 
@@ -88,12 +91,16 @@ totab1 <- toplo %>%
     Site = site, 
     Year = sample, 
   )
-  as_grouped_data('site')
 
-richtab <- flextable(totab1) %>% 
-  flextable::fontsize(size = 8, part = 'body', j = 3:13) %>% 
+richtab <- totab %>% 
+  as_grouped_data('Site') %>% 
+  flextable() %>% 
+  fontsize(size = 8, part = 'body', j = 3:ncol_keys(.)) %>% 
   add_header_row(values = c('', 'Sample interval every x meters'), colwidths = c(2, 11)) %>% 
-  flextable::theme_booktabs()
+  theme_booktabs() %>% 
+  padding(padding = 0, part = 'all') %>% 
+  width(width = 1, j = 1) %>% 
+  width(width = 5.5 / (ncol_keys(.) - 1), j = 2:ncol_keys(.))
 
 save(richtab, file = here('data/richtab.RData'))
                       
