@@ -6,9 +6,13 @@ library(hrbrthemes)
 library(showtext)
 library(RColorBrewer)
 library(ggrepel)
+library(ggmap)
+library(ggspatial)
+library(sf)
 
 # downsampled vegetation surveys
-data(downsmps)
+load(file = here('data/downsmps.RData'))
+load(file = here('data/tranloc.RData'))
 
 # get font
 font_add_google("Roboto", "roboto")#, regular = 'C:/Windows/Fonts/Roboto.ttf')
@@ -19,6 +23,38 @@ showtext_opts(dpi = 400)
 
 # to remove from analysis
 rmv <- c("Unknown", "Woody Debris, none/detritus")
+
+# site map ------------------------------------------------------------------------------------
+
+tomap <- tranloc %>% 
+  st_centroid() %>% 
+  mutate(
+    lon = st_coordinates(.)[, 1], 
+    lat = st_coordinates(.)[, 2]
+  )
+
+dat_ext <- tomap %>%
+  st_buffer(dist = 10000) %>%
+  st_bbox %>%
+  unname
+
+# stamen base map
+bsmap1 <- get_stamenmap(bbox = dat_ext, maptype = 'terrain-background', zoom = 11)
+
+p <- ggmap(bsmap1) +
+  geom_sf(data = tomap, inherit.aes = F, size = 2) + 
+  geom_text_repel(data = tomap, aes(label = site, x = lon, y = lat), inherit.aes = F) + 
+  annotation_north_arrow(location = 'tr', which_north = "true", height = grid::unit(0.75, "cm"), 
+                         width = grid::unit(0.75, "cm")) +
+  annotation_scale(location = 'bl') + 
+  labs(
+    x = NULL, 
+    y = NULL
+  )
+
+jpeg(here('figs/sitemap.jpg'), height = 6, width = 4.5, family = fml, units = 'in', res = 400)
+print(p)
+dev.off()
 
 # relative reduction in effort --------------------------------------------
 
@@ -758,11 +794,13 @@ thm <- theme_ipsum(base_family = fml) +
   theme(
     panel.grid.minor = element_blank(),
     # panel.grid.major.x = element_blank(),
-    axis.title.x = element_text(hjust = 0.5, size = 12),
-    axis.title.y = element_text(hjust = 0.5, size = 12),
+    axis.title.x = element_text(hjust = 0.5, size = 10),
+    axis.title.y = element_text(hjust = 0.5, size = 10),
+    axis.text.y = element_text(size = 7),
     legend.position = 'top', 
     panel.grid.major = element_blank(), 
-    legend.text = element_text(size = 8)
+    legend.text = element_text(size = 8),
+    plot.margin = unit(c(0.25, 0.25, 0.25, 0.25), "cm")
   )
 
 dgd <- position_dodge2(width = 0.25)
@@ -787,7 +825,6 @@ for(site in sites){
   colin <- cols(length(levs))
   names(colin) <- levs
   
-  
   p <- ggplot(toplo2, aes(x = sampint, y = meandist)) + 
     geom_bar(data = toplo1, aes(fill = zonefct, x = 5), stat = 'identity', position = position_stack(reverse = TRUE), alpha = 0.7, width = 20) +
     geom_point(position = dgd) + 
@@ -804,7 +841,7 @@ for(site in sites){
     thm
   
   flnm <- paste0('figs/zoneest_', site, '.jpg')
-  jpeg(here(flnm), height = 5, width = 8, family = fml, units = 'in', res = 400)
+  jpeg(here(flnm), height = 4, width = 8, family = fml, units = 'in', res = 400)
   print(p)
   dev.off()
   
