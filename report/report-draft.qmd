@@ -31,6 +31,8 @@ library(flextable)
 load(file = here('data/richtab.RData'))
 ```
 
+to do: make sure baseline and 2018 terminology is consistent (e.g., no phase)
+
 \newpage
 
 ## Acknowledgements {.unnumbered}
@@ -67,8 +69,7 @@ Native coastal habitats provide multiple ecosystem services that benefit natural
 
 The Tampa Bay region (Florida, USA) has been identified as one of the most vulnerable areas worldwide to the effects of climate change due to its shallow topography and dense urban population living near the coast [@tbep0714; @fu2016]. Projections of sea-level rise for Tampa Bay suggest an increase of two to 8.5 feet by the year 2100 [@tbep0519], potentially inundating low-lying coastal areas with emergent tidal wetlands and impacting critical infrastructure. Numerous efforts to track and plan for the projected effects of sea-level rise have been the focus of regional managers in recent decades. The Tampa Bay Estuary Program (TBEP) works to develop science-based solutions for managing the estuary by creating consensus among regional managers on approaches for maintaining a healthy bay and watershed. The TBEP Habitat Master Plan (HMP) [@tbep0720] provides coverage targets and goals for all native habitats in the bay, with specific focus on intertidal habitats that are especially vulnerable to climate change and coastal development. These targets and goals are based on coverages that are likely to be achieved based on past restoration efforts, available remaining areas for acquisition, and trajectories of land use change for the prior decades.
 
-The Critical Coastal Habitat Assessment (CCHA) complements the HMP by tracking coastal habitat change over time using a long-term monitoring program with multiple spatial scales of inference. The three scales of inference are defined as the "Bay Wide", "Bay Segment", and "Habitat Ecotone" scale (**reference QAPP**). The "Habitat Ecotone" scale is designed to complement the coarser "Bay Wide" and "Bay Segment" scales by providing high-resolution surveys of emergent tidal wetlands 
-The Critical Coastal Habitat Assessment (CCHA) complements the HMP by providing high-resolution surveys of emergent tidal wetlands [@tbep0517; @tbep0817]. Unlike the HMP that is based primarily on remote sensing products, the CCHA provides field-based estimates of coastal habitats at fixed sites for selected locations around Tampa Bay (@fig-sitemap). Each of nine sites are sampled every 3-5 years using a transect design extending landward from the water to survey vegetation and tree communities, surface elevation, soil characteristics, interstitial porewater salinity, and faunal communities. The surveys also track discrete vegetation zones (e.g., mangrove fringe, coastal uplands, etc.) to assess potential landward shifts or reductions in habitats based on anticipated changes from sea-level rise and increased temperatures. To date, two rounds of sampling have been completed. The first baseline surveys were conducted in 2015 and 2016 [@tbep0517; @tbep0817] and a second set of surveys was conducted in 2018.
+The Critical Coastal Habitat Assessment (CCHA) complements the HMP by tracking coastal habitat change over time using a long-term monitoring program with multiple spatial scales of inference. The three scales of inference are defined as the "Bay Wide", "Bay Segment", and "Habitat Ecotone" scale (**reference QAPP**). The habitat ecotone scale is designed to complement the coarser scales by providing high-resolution surveys of emergent tidal wetlands [@tbep0517; @tbep0817].  This is accomplished with field-based estimates of coastal habitats at fixed sites for selected locations around Tampa Bay (@fig-sitemap). Each of nine sites are sampled every 3-5 years using a transect extending landward from the water to survey herbaceous and woody vegetation, surface elevation, soil characteristics, interstitial porewater salinity, and faunal communities. The surveys also track discrete vegetation zones (e.g., mangrove fringe, salt marsh, coastal uplands, etc.) to assess potential landward shifts or reductions in habitats based on anticipated changes from sea-level rise, increased temperatures, and acute events such as fires and hurricanes. To date, two rounds of sampling have been completed. The first baseline surveys were conducted in 2015 and 2016 [@tbep0517; @tbep0817] and a second set of surveys was conducted in 2018.
 
 ```{r}
 #| fig-cap: "Locations of long-term monitoring sites in Tampa Bay surveyed for the Critical Coastal Habitat Assessment.  Each site has been sampled twice as of this report."
@@ -97,10 +98,10 @@ The current sampling design used at each CCHA site is shown in [@fig-transectdes
 knitr::include_graphics(here('figs/transectdesign.jpg'))
 ```
 
-All existing CCHA vegetation surveys at each site and for both phases of sampling (baseline and 2018 surveys) were sub-sampled from the existing effort of sample plots every half meter. @fig-subsampex shows an example of the sub-sampling scheme, where effort was reduced in increments of a half meter, starting from the complete survey to an upper limit of sampling every 10 meters. For simplicity, @fig-subsampex shows sub-sampling up to every three meters for a hypothetical 30 meter transect (mean transect length across all sites is approximately 150 meters). The top row represents the complete existing survey as the basis of comparison for the metrics estimated from the sub-sampled datasets in the rows below. The existing surveys were sub-sampled at the specified meter interval for every unique subset (or replicate) that was possible. For example, two unique replicates can be created with sub-sampling every meter, three every 1.5 meters, etc. The large red points in @fig-subsampex show which of the existing survey points were sampled for each replicate at the specified sub-sample distance.
+All existing CCHA vegetation surveys at each site and for baseline (2015 - 2016) and 2018 data were sub-sampled from the existing effort of sample plots every half meter. @fig-subsampex shows an example of the sub-sampling scheme, where effort was reduced in increments of a half meter, starting from the complete survey to an upper limit of sampling every 10 meters. For simplicity, @fig-subsampex shows sub-sampling up to every three meters for a hypothetical 30 meter transect (mean transect length across all sites is approximately 150 meters). The top row represents the complete existing survey as the basis of comparison for the metrics estimated from the sub-sampled datasets in the rows below. The existing surveys were sub-sampled at the specified meter interval for every unique subset (or replicate) that was possible. For example, two unique replicates can be created with sub-sampling every meter, three every 1.5 meters, etc. The large red points in @fig-subsampex show which of the existing survey points were sampled for each replicate at the specified sub-sample distance.
 
 ```{r}
-#| fig.cap: "Schematic of the method for creating sub-samples of existing transect data.  The full survey with sampling at half-meter intervals is shown at the top, with increasing sampling intervals from top to bottom.  Replicates for each sample interval show the unique points that were selected."
+#| fig-cap: "Schematic of the method for creating sub-samples of existing transect data.  The full survey with sampling at half-meter intervals is shown at the top, with increasing sampling intervals from top to bottom.  Replicates for each sample interval show the unique points that were selected."
 #| label: fig-subsampex
 knitr::include_graphics(here('figs/subsampex.jpg'))
 ```
@@ -110,6 +111,7 @@ The relative reduction in effort associated with each half-meter increase along 
 ```{r}
 #| fig-cap: "Percent reductions in sample effort as a function of the sample interval.  For example, sampling every 1 meter represents a 50% reduction in effort from half-meter sampling."
 #| label: fig-releff
+#| tbl-cap: ''
 knitr::include_graphics(here('figs/releff.jpg'))
 ```
 
@@ -155,7 +157,7 @@ knitr::include_graphics(here('figs/richloss.jpg'))
 
 ### Richness estimates by zone
 
-Similar to the richness estimates at each site, an assessment of changes with reduction in effort was also observed within the unique vegetation zones observed across all sites (@fig-richzone). A total of 28 unique zones were sampled across the nine sites. The lines show the estimated reduction in the richness estimate for zones at each site and the thick line is the average trend for each zone across sites (points are not shown to reduce clutter). As for the site-level assessments, the rate of reduction decreased with increasing sampling distance within each zone. The subplots are arranged left to right, top to bottom based on the greatest reduction in species richness as a percentage of the total. The highest overall richness was observed in the transitional marsh zone at Cockroach Bay (20 species in the first phase of sampling) and coastal upland zone at Weedon Island (19 species in the first phase of sampling). Consequently, the zones at these sites had large decreases in total richness with reduced effort. Conversely, aquatic zones (channel, freshwater pond, and tidal creek) had very little vegetation (*Juncus roemerianus* or *Blutaparon vermiculare*) and did not show any changes with reduction in effort, as expected. Changes in richness with reduced effort varied considerably for the coastal uplands, where total richness differed by site (highest at Weedon Island, lowest at Little Manatee River).
+Similar to the richness estimates at each site, an assessment of changes with reduction in effort was also observed within the unique vegetation zones observed across all sites (@fig-richzone). A total of 28 unique zones were sampled across the nine sites. The lines show the estimated reduction in the richness estimate for zones at each site and the thick line is the average trend for each zone across sites (points are not shown to reduce clutter). As for the site-level assessments, the rate of reduction decreased with increasing sampling distance within each zone. The subplots are arranged left to right, top to bottom based on the greatest reduction in species richness as a percentage of the total. The highest overall richness was observed in the transitional marsh zone at Cockroach Bay (20 species in the baseline sampling) and coastal upland zone at Weedon Island (19 species in the baseline sampling). Consequently, the zones at these sites had large decreases in total richness with reduced effort. Conversely, aquatic zones (channel, freshwater pond, and tidal creek) had very little vegetation (*Juncus roemerianus* or *Blutaparon vermiculare*) and did not show any changes with reduction in effort, as expected. Changes in richness with reduced effort varied considerably for the coastal uplands, where total richness differed by site (highest at Weedon Island, lowest at Little Manatee River).
 
 ```{r}
 #| fig-cap: "Reductions in species richness estimates with sampling distance for each unique vegetation zone across all sites.  Each line is a unique site and sample year.  The black line shows the average trend for the zone.  Panels are arranged based on the greatest percent reduction in richness from full to minimum effort."
@@ -236,55 +238,55 @@ knitr::include_graphics(here('figs/zonevarex.jpg'))
 Detailed results for the zone lengths at each site are shown in Figures [-@fig-zoneestbb], [-@fig-zoneestcb], [-@fig-zoneestfd], [-@fig-zoneesthp], [-@fig-zoneesthh], [-@fig-zoneestlmr], [-@fig-zoneestm], [-@fig-zoneestutbp], and [-@fig-zoneestwi]. The shaded areas represent the true zones at half-meter sampling and the points show the estimates of the starting location for each zone at the specified sampling interval. The horizontal bars show the variance across the sub-samples for each level of sampling effort. The figures clearly show a reduction in precision for the zone lengths and an inability to identify some zones (overlap of estimates) with decreasing sample effort.
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Big Bend - Teco for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Big Bend - Teco for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestbb 
 knitr::include_graphics(here('figs/zoneest_Big Bend - TECO.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Cockroach Bay for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Cockroach Bay for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestcb 
 knitr::include_graphics(here('figs/zoneest_Cockroach Bay.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Fort DeSoto for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Fort DeSoto for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestfd 
 knitr::include_graphics(here('figs/zoneest_Fort DeSoto.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Harbor Palms for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Harbor Palms for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneesthp 
 knitr::include_graphics(here('figs/zoneest_Harbor Palms.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Hidden Harbor for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Hidden Harbor for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneesthh 
 knitr::include_graphics(here('figs/zoneest_Hidden Harbor.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at LIttle Manatee River for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at LIttle Manatee River for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestlmr 
 knitr::include_graphics(here('figs/zoneest_Little Manatee River.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Mosaic for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Mosaic for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestm 
 knitr::include_graphics(here('figs/zoneest_Mosaic.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Upper Tampa Bay Park for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Upper Tampa Bay Park for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestutbp 
 knitr::include_graphics(here('figs/zoneest_Upper Tampa Bay Park.jpg'))
 ```
 
 ```{r}
-#| fig.cap: "Estimates and variance of the estimates in the zone starting locations at Weedon Island for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
+#| fig-cap: "Estimates and variance of the estimates in the zone starting locations at Weedon Island for 1 meter to 10 meter sampling. The colored regions indicate the zone delineations at half-meter sampling."
 #| label: fig-zoneestwi 
 knitr::include_graphics(here('figs/zoneest_Weedon Island.jpg'))
 ```
@@ -293,7 +295,7 @@ knitr::include_graphics(here('figs/zoneest_Weedon Island.jpg'))
 
 An assessment of the relative sampling effort required to obtain a representative sample can inform the utility and feasibility of a long-term monitoring program. A tradeoff exists between detail and effort, where an optimal level exists between too much and too little sampling. Highly intensive surveys may not provide novel information relative to the level of effort, compared to less intensive surveys that are efficient but may not provide an accurate sample of a population. Because the CCHA is expected to continue for several decades, identifying an optimal level of effort that provides sufficient information while minimizing time and resources collecting the data is critical to longevity of the program. This report provided a quantitative assessment of an optimal level of effort for sampling the vegetation community at each of nine monitoring sites. Results from this report can be used to justify amended sampling designs for future surveys.
 
-Based on the results herein, sampling the vegetation community every meter along each transect is recommended. This level of effort is a 50% reduction in sampling from the original half meter sampling used during the first two phases of CCHA surveys. This recommendation is expected to dramatically improve overall sampling efficiency given that the vegetation transects are the most time intensive component of all CCHA sampling. All of the key metrics used to characterize the vegetation community and vegetation zones did not change dramatically from half-meter to 1 meter sampling. Although richness estimates declined with decreased sampling effort, large changes at all sites were not observed at 1 meter sampling. Species likely to be missed by reduced sampling are those with low frequency occurrence [@miller2000; @zhang2019], especially within each unique vegetation zone. However, identifying rare species is not a goal of the CCHA and a general assessment of vegetation communities in emergent tidal wetlands will not be compromised at 1 meter sampling.
+Based on the results herein, sampling the vegetation community every meter along each transect is recommended. This level of effort is a 50% reduction in sampling from the original half meter sampling used during the baseline and 2018 CCHA surveys. This recommendation is expected to dramatically improve overall sampling efficiency given that the vegetation transects are the most time intensive component of all CCHA sampling. All of the key metrics used to characterize the vegetation community and vegetation zones did not change dramatically from half-meter to 1 meter sampling. Although richness estimates declined with decreased sampling effort, large changes at all sites were not observed at 1 meter sampling. Species likely to be missed by reduced sampling are those with low frequency occurrence [@miller2000; @zhang2019], especially within each unique vegetation zone. However, identifying rare species is not a goal of the CCHA and a general assessment of vegetation communities in emergent tidal wetlands will not be compromised at 1 meter sampling.
 
 The estimated elevation at which mangrove species are observed did not show consistent patterns across sites by species, although a general decrease was observed with reduced effort. This result was unexpected and it is unclear why reduced effort resulted in lower elevation estimates.  Elevation generally increases along a transect and the sub-sampling method does not consistently sample lower elevations. An additional notable result was differences among the species for the elevations at half-meter sampling across the sites. In general, the three mangrove species are expected to follow an elevation gradient where red mangroves are more tolerant of polyhaline conditions (18-30 ppt) at lower elevations closer to the shoreline, white mangroves are intermediate, and black mangroves prefer oligohaline conditions (5-18 ppt) at higher elevations [@Odum90]. Some sites showed red mangroves at higher elevations than black mangroves, which was not expected, although these differences could be related to site-specific characteristics of the elevation gradient and porewater salinities. Regardless, the elevation metrics showed considerable changes with relative sampling effort, although they were very minor with a 50% reduction in effort at 1 meter sampling. Any changes as a function of sample effort will also be notably less for mangrove species with high frequency occurrence at a site (Figures [-@fig-foperelevex] and [-@fig-fovarelevex]).
 

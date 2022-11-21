@@ -201,7 +201,7 @@ rchests <- downsmps %>%
 
 toplo <- rchests %>% 
   mutate(
-    sample = factor(paste('Year', sample))
+    sample = factor(sample, levels = c('1', '2'), labels = c('Baseline', '2018'))
   ) %>% 
   group_by(site, sample) %>% 
   mutate(
@@ -306,7 +306,7 @@ p2 <- ggplot(toplo1, aes(x = sampint, y = per, group = sample, color = sample)) 
 
 tmp <- rchests %>% 
   mutate(
-    sample = factor(paste('Year', sample))
+    sample = factor(sample, levels = c('1', '2'), labels = c('Baseline', '2018'))
   ) %>% 
   group_by(site, sample) %>% 
   mutate(
@@ -592,7 +592,7 @@ foests <- downsmps %>%
 
 toplo <- foests %>% 
   mutate(
-    sample = factor(paste('Year', sample))
+    sample = factor(sample, levels = c('1', '2'), labels = c('Baseline', '2018'))
   ) %>% 
   unite('samplespecies', sample, species, remove = F) 
 # filter(species == 'Avicennia germinans')

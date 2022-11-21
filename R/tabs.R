@@ -35,7 +35,7 @@ rchests <- downsmps %>%
 
 rchestssum <- rchests %>% 
   mutate(
-    sample = factor(paste('Year', sample))
+    sample = factor(sample, levels = c('1', '2'), labels = c('Baseline', '2018'))
   ) %>% 
   group_by(site, sample) %>% 
   mutate(
@@ -74,6 +74,19 @@ rchestssum <- rchests %>%
     })
   )
 
+# get factor levels based on greatest reduction
+levs <- rchestssum %>% 
+  select(-data) %>% 
+  unnest('lofit') %>% 
+  group_by(site) %>% 
+  summarise(
+    difv = max(perloess) - min(perloess), 
+    .groups = 'drop'
+  ) %>% 
+  arrange(difv) %>% 
+  pull(site) %>% 
+  rev
+
 totab <- rchestssum %>% 
   select(-lofit) %>% 
   unnest('data') %>% 
@@ -82,7 +95,8 @@ totab <- rchestssum %>%
     per = paste0(' (', abs(round(per, 0)), ')'), 
     spprch = round(spprch, 1), 
     per = ifelse(sampint == 0.5, '', per), 
-    sample = gsub('Year ', '', sample)
+    sample = gsub('Year ', '', sample), 
+    site = factor(site, levels = levs)
   ) %>% 
   filter(sampint %in% c(0.5, 1:10)) %>% 
   unite('spprch', spprch, per, sep = '') %>%  
@@ -90,12 +104,13 @@ totab <- rchestssum %>%
   rename(
     Site = site, 
     Year = sample, 
-  )
+  ) %>% 
+  arrange(Site, desc(Year))
 
 richtab <- totab %>% 
   as_grouped_data('Site') %>% 
   flextable() %>% 
-  fontsize(size = 8, part = 'body', j = 3:ncol_keys(.)) %>% 
+  fontsize(size = 8, part = 'all', j = 1:ncol_keys(.)) %>% 
   add_header_row(values = c('', 'Sample interval every x meters'), colwidths = c(2, 11)) %>% 
   theme_booktabs() %>% 
   padding(padding = 0, part = 'all') %>% 
