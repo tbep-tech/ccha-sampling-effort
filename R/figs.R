@@ -39,14 +39,22 @@ dat_ext <- tomap %>%
   unname
 
 # stamen base map
-bsmap1 <- get_stamenmap(bbox = dat_ext, maptype = 'terrain-background', zoom = 11)
+bsmap1 <- get_stamenmap(bbox = dat_ext, maptype = 'toner-background', zoom = 11, color = 'bw')
 
-p <- ggmap(bsmap1) +
+mapatt <- attributes(bsmap1)
+map_transparent <- matrix(adjustcolor(bsmap1, alpha.f = 0.2), nrow = nrow(bsmap1))
+attributes(map_transparent) <- mapatt
+
+p <- ggmap(map_transparent) +
   geom_sf(data = tomap, inherit.aes = F, size = 2) + 
   geom_text_repel(data = tomap, aes(label = site, x = lon, y = lat), inherit.aes = F) + 
   annotation_north_arrow(location = 'tr', which_north = "true", height = grid::unit(0.75, "cm"), 
                          width = grid::unit(0.75, "cm")) +
   annotation_scale(location = 'bl') + 
+  theme(
+    panel.grid = element_blank(), 
+    panel.background = element_rect(fill = 'white', color = 'black')
+  ) +
   labs(
     x = NULL, 
     y = NULL
