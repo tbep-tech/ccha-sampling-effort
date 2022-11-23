@@ -413,11 +413,11 @@ rchzonests <- downsmps %>%
   group_by(site, sampint, zone_name) %>%
   summarise(spprch = mean(spprch), .groups = 'drop')
 
-
 thm <- theme_ipsum(base_family = fml) +
   theme(
     panel.grid.minor = element_blank(),
     # panel.grid.major.x = element_blank(),
+    plot.margin = margin(0.2, 0.2, 0.2, .2, "cm"),
     axis.title.x = element_text(hjust = 0.5, size = 12),
     axis.title.y = element_text(hjust = 0.5, size = 12),
     legend.position = 'top', 
@@ -481,7 +481,7 @@ for(site in sites){
   p <- p1 + p2 + plot_layout(ncol = 2, guides = 'collect') & thm
   
   flnm <- paste0('figs/richzone_', site, '.jpg')
-  jpeg(here(flnm), height = 6, width = 10, family = fml, units = 'in', res = 400)
+  jpeg(here(flnm), height = 4.5, width = 9, family = fml, units = 'in', res = 400)
   print(p)
   dev.off()
   

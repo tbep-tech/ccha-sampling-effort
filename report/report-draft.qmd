@@ -157,32 +157,68 @@ knitr::include_graphics(here('figs/richloss.jpg'))
 
 ### Species richness estimates by zone
 
-Similar to the species richness estimates at each site, species richness also declined with reduced sampling effort within the vegetation zones observed across all sites (@fig-richzone). A total of 28 vegetation zones were sampled across the nine sites. Some vegetation zones were observed at multiple sites (e.g., coastal upland zone, **Spartina patens**) while some vegetation zones were only found at one site (e.g., unvegetated salt barren). The lines in @fig-richzone show the estimated reduction in the species richness estimate for individual zones at each site and the thick line is the average trend for each zone across sites (points are not shown to reduce clutter). As for the site-level assessments, the rate of reduction decreased with increasing sampling distance within each zone. The subplots are arranged left to right, top to bottom based on the greatest reduction in species richness as a percentage of the total. The highest overall richness was observed in the transitional marsh zone at Cockroach Bay (20 species in the baseline sampling) and coastal upland zone at Weedon Island (19 species in the baseline sampling). Consequently, the zones at these sites had large decreases in total richness with reduced effort. Conversely, aquatic zones (channel, freshwater pond, and tidal creek) had very little vegetation (*Juncus roemerianus* or *Blutaparon vermiculare*) and did not show any changes with reduction in effort, as expected. Changes in richness with reduced effort varied considerably for the coastal uplands, where total richness differed by site (highest at Weedon Island, lowest at Little Manatee River).
+Similar to the species richness estimates at each site, species richness also declined with reduced sampling effort within the unique vegetation zones observed across all sites (@fig-richzone). A total of 28 vegetation zones were sampled across the nine sites, although inconsistent naming prevented a comparison of similar zones between sites.  In general, the unique zones across all sites can be grouped as 1. Brazilian Pepper Berm and **Schinus terebinthifolius**; 2. Transitional wetland and transitional marsh; 3. High salt barren, unvegetated salt barren, and salt barren; 4. Short mangrove, mangrove, mangrove fringe, immature mangrove fringe and 5. Open water (channel, freshwater pond, tidal creek, tidal mud flat). The following plots retain unique zone names for each site and future sampling could consider standardizing names between sites. 
+
+The lines in Figures [-@fig-rchzoneestbb], [-@fig-rchzoneestcb], [-@fig-rchzoneestfd], [-@fig-rchzoneesthp], [-@fig-rchzoneesthh], [-@fig-rchzoneestlmr], [-@fig-rchzoneestm], [-@fig-rchzoneestutbp], and [-@fig-rchzoneestwi] show the estimated reduction in the species richness estimates for individual zones at each site in the left plot and percent reductions in species richness estimates in the right plots. Species richness counts were pooled between the baseline and 2018 surveys.  As for the site-level assessments, the rate of reduction decreased with increasing sampling distance within each zone.  The highest overall richness was observed in the coastal upland zone at Big Bend -Teco (23 species, @fig-rchzoneestbb) and transitional marsh at Cockroach Bay (21 species, @fig-rchzonestcb). Consequently, the zones at these sites had large decreases in total richness with reduced effort. Conversely, aquatic zones (channel, freshwater pond, and tidal creek) had very little vegetation (*Juncus roemerianus* or *Blutaparon vermiculare*) and did not show any changes with reduction in effort, as expected. Changes in richness with reduced effort varied considerably for the coastal uplands, where total richness differed by site (highest at Big Bend Teco @fig-rchzoneestbb, lowest at Cockroach Bay, @fig-rchzoneescb).
 
 ```{r}
-#| fig-cap: "Species richness estimates by sampling distance for each unique vegetation zone across all sites.  Each line is a unique site and sample year.  The black line shows the average trend for the zone.  Panels are arranged based on the greatest percent reduction in richness from full to minimum effort."
-#| label: fig-richzone
-knitr::include_graphics(here('figs/richzone.jpg'))
-```
-
-@fig-richzoneper shows similar results as @fig-richzone, except richness is scaled as a percentage of the total within a zone at full sampling effort. This plot allows a comparison of a reduction in the estimate independent of the overall species richness. The greatest percent reduction in the richness estimate with decreased sampling was observed in the coastal upland zone at Weedon Island (over 80% loss), which also had the second highest total species richness.
-
-```{r}
-#| fig-cap: "Relative percent reductions in species richness estimates with sampling distance for each unique vegetation zone across all sites.  Each line is a unique site and year. The black line shows the average trend for the zone.  Panels are arranged based on the greatest percent reduction in richness from full to minimum effort."
-#| label: fig-richzoneper
-knitr::include_graphics(here('figs/richzoneper.jpg'))
-```
-
-@fig-richzonesum combines results from @fig-richzoneper into a single panel, showing only the average percent loss for all sites in each zone (i.e., the black lines in @fig-richzoneper). The line thickness is in proportion to the average total species richness for all sites in a zone at full sampling effort. Line thickness generally increases from top to bottom at the 10 meter mark, providing evidence that percent loss in the estimate is a function of richness. An alternative depiction of this relationship is shown in @fig-richzoneloss, where a linear fit of total percent loss from half-meter to 10 meter sampling versus average species richness by zone was significant (*p* \< 0.05).
-
-```{r}
-#| fig-cap: "Relative percent reduction in species richness with sampling distance for each unique vegetation zone across all sites.  Each line represents the average percent reduction for each occurrence of a zone. Line thickness and opacity is in proportion to mean total richness in each zone across sites and years."
-#| label: fig-richzonesum
-knitr::include_graphics(here('figs/richzonesum.jpg'))
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Big Bend - Teco.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestbb
+knitr::include_graphics(here('figs/richzone_Big Bend - TECO.jpg'))
 ```
 
 ```{r}
-#| fig-cap: "Total percent loss of richness from half-meter to 10 meter sampling as a function of average species richness within a zone."
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Cockroach Bay.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestcb
+knitr::include_graphics(here('figs/richzone_Cockroach Bay.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Fort DeSoto.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestfd
+knitr::include_graphics(here('figs/richzone_Fort DeSoto.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Hidden Harbor.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneesthp
+knitr::include_graphics(here('figs/richzone_Harbor Palms.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Hidden Harbor.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneesthh
+knitr::include_graphics(here('figs/richzone_Hidden Harbor.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Little Manatee River.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestlmr
+knitr::include_graphics(here('figs/richzone_Little Manatee River.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Mosaic.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestm
+knitr::include_graphics(here('figs/richzone_Mosaic.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Upper Tampa Bay Park.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestutbp
+knitr::include_graphics(here('figs/richzone_Upper Tampa Bay Park.jpg'))
+```
+
+```{r}
+#| fig-cap: "Species richness estimates by sampling distance for each zone at Weedon Island.  The left plot shows total species richness and the right plot shows relative percent reductions in species richness. Lines are colored by zones." 
+#| label: fig-rchzoneestwi
+knitr::include_graphics(here('figs/richzone_Weedon Island.jpg'))
+```
+
+@fig-richzoneloss shows the relationship between percent loss in species richness with actual species richness in the unique zones for each site. There is strong evidence that greater reductions in species richness estimates are expected for zones with higher actual species irchness (linear fit was significant, *p* \< 0.05).
+
+```{r}
+#| fig-cap: "Total percent loss of richness from half-meter to 10 meter sampling as a function of average species richness within a zone.  Points are colored by site and each point represents a unique zone at a site."
 #| label: fig-richzoneloss
 knitr::include_graphics(here('figs/richzoneloss.jpg'))
 ```
@@ -292,6 +328,8 @@ knitr::include_graphics(here('figs/zoneest_Weedon Island.jpg'))
 ```
 
 ## Conclusions and Recommendations
+
+Need something about consistent zone naming or multivariate assessment. 
 
 An assessment of the relative sampling effort required to obtain a representative sample can inform the utility and feasibility of a long-term monitoring program. A tradeoff exists between detail and effort, where an optimal level exists between too much and too little sampling. Highly intensive surveys may not provide novel information relative to the level of effort, compared to less intensive surveys that are efficient but may not provide an accurate sample of a population. Because the CCHA is expected to continue for several decades, identifying an optimal level of effort that provides sufficient information while minimizing time and resources collecting the data is critical to longevity of the program. This report provided a quantitative assessment of an optimal level of effort for sampling the vegetation community at each of nine monitoring sites. Results from this report can be used to justify amended sampling designs for future surveys.
 
