@@ -9,6 +9,7 @@ library(ggrepel)
 library(ggmap)
 library(ggspatial)
 library(sf)
+library(patchwork)
 
 # downsampled vegetation surveys
 load(file = here('data/downsmps.RData'))
@@ -392,10 +393,13 @@ dev.off()
 colfun <- colorRampPalette(brewer.pal(8, "Accent"))
 
 rchzonests <- downsmps %>%
+  group_by(site, sampint, rep) %>% 
+  nest() %>% 
   mutate(
-    spprch = map(downsmp, function(downsmp){
+    spprch = map(data, function(data){
       
-      downsmp %>%
+      data %>% 
+        unnest('downsmp') %>%
         filter(!species %in% rmv) %>%
         group_by(zone_name) %>% 
         summarise(
@@ -404,11 +408,11 @@ rchzonests <- downsmps %>%
       
     })
   ) %>% 
-  select(-downsmp) %>%
+  select(-data) %>%
   unnest('spprch') %>%
-  group_by(site, sample, sampint, zone_name) %>%
-  summarise(spprch = mean(spprch), .groups = 'drop') %>% 
-  unite(grp, c('site', 'sample'), remove = F)
+  group_by(site, sampint, zone_name) %>%
+  summarise(spprch = mean(spprch), .groups = 'drop')
+
 
 thm <- theme_ipsum(base_family = fml) +
   theme(
@@ -421,150 +425,101 @@ thm <- theme_ipsum(base_family = fml) +
   )
 
 toplo <- rchzonests %>% 
-  group_by(site, sample, zone_name) %>% 
+  group_by(site, zone_name) %>% 
   mutate(
     per = 100 * (spprch - max(spprch)) / max(spprch)
   ) %>% 
-  group_by(zone_name) %>% 
   nest() %>% 
   mutate(
-    lofit = purrr::map(data, function(x){
-      
-      prddat <- x %>% 
-        select(sampint) %>% 
-        unique
+    data = purrr::map(data, function(x){
       
       spprchloess <- loess(spprch ~ sampint, x) %>% 
-        predict(newdat = prddat)
+        predict(newdat = x)
       
       perloess <- loess(per ~ sampint, x) %>% 
-        predict(newdata = prddat)
+        predict(newdata = x)
       
-      meanrich <- x %>% 
-        group_by(sample) %>% 
-        filter(sampint == 0.5) %>% 
-        pull(spprch) %>% 
-        mean()
-      
-      out <- tibble(
-        meanrich = meanrich, 
-        sampint = prddat$sampint,
-        spprchloess = spprchloess, 
-        perloess = perloess
-      ) 
+      out <- x %>% 
+        mutate(
+          spprchloess = spprchloess, 
+          perloess = perloess
+        ) 
       
       return(out)
       
     })
-  )
-
-colvec <- colfun(length(unique(toplo$zone_name)))
-toplo1 <- toplo %>% 
-  select(-lofit) %>% 
+  ) %>% 
   unnest('data')
 
+sites <- unique(toplo$site)
+for(site in sites){
+  
+  toploi <- toplo %>% 
+    filter(site %in% !!site)
+  
+  p1 <- ggplot(toploi, aes(x = sampint, y = spprch)) + 
+    geom_smooth(aes(color = zone_name), se = F, linewidth = 1) +
+    scale_color_manual(values = colfun(length(unique(toploi$zone_name)))) +
+    thm + 
+    labs(
+      subtitle = site,
+      y = 'Species richness estimate', 
+      x = 'Sampling distance every x meters', 
+      color = NULL
+    )
+  
+  p2 <- ggplot(toploi, aes(x = sampint, y = per)) + 
+    geom_smooth(aes(color = zone_name), se = F, linewidth = 1) +
+    scale_color_manual(values = colfun(length(unique(toploi$zone_name)))) +
+    thm + 
+    labs(
+      y = 'Species richness estimate, % loss', 
+      x = 'Sampling distance every x meters', 
+      color = NULL
+    )
+  
+  p <- p1 + p2 + plot_layout(ncol = 2, guides = 'collect') & thm
+  
+  flnm <- paste0('figs/richzone_', site, '.jpg')
+  jpeg(here(flnm), height = 6, width = 10, family = fml, units = 'in', res = 400)
+  print(p)
+  dev.off()
+  
+}
+
 toplo2 <- toplo %>% 
-  select(-data) %>% 
-  unnest('lofit')
+  filter(sampint %in% c(0.5, 10)) %>% 
+  group_by(site, zone_name) %>% 
+  mutate(per = min(per)) %>% 
+  filter(sampint == 0.5) %>% 
+  ungroup() %>% 
+  select(site, zone_name, spprch, per)
 
-# get factor levels based on greatest reduction
-levs <- toplo2 %>% 
-  group_by(zone_name) %>% 
-  summarise(
-    difv = min(perloess) - max(perloess), 
-    .groups = 'drop'
-  ) %>% 
-  arrange(difv) %>% 
-  pull(zone_name)
-
-toplo1 <- toplo1 %>% 
-  mutate(
-    zone_name = factor(zone_name, levels = levs)
-  )
-
-p1 <- ggplot(toplo1, aes(x = sampint, y = spprch)) + 
-  # geom_point(size = 0.5, aes(color = site)) +
-  geom_smooth(aes(group = grp, color = site), se = F, size = 0.65) +
-  geom_smooth(color = 'black', se = F, size = 1) +
-  scale_color_manual(values = colfun(length(unique(toplo1$site)))) +
-  facet_wrap(~zone_name) + 
-  thm + 
-  labs(
-    y = 'Species richness estimate', 
-    x = 'Sampling distance every x meters', 
-    color = NULL
-  )
-
-p2 <- ggplot(toplo1, aes(x = sampint, y = per)) + 
-  # geom_point(size = 0.5, aes(color = site)) +
-  geom_smooth(aes(group = grp, color = site), se = F, size = 0.5) +
-  geom_smooth(color = 'black', se = F) +
-  scale_color_manual(values = colfun(length(unique(toplo1$site)))) +
-  facet_wrap(~zone_name) +
-  thm + 
-  labs(
-    y = 'Species richness estimate, % loss', 
-    x = 'Sampling distance every x meters', 
-    color = NULL
-  )
-
-lbs <- toplo2 %>% 
-  filter(sampint == 10)
-
-brks <- seq(min(toplo2$meanrich), max(toplo2$meanrich), by = 4)
-
-p3 <- ggplot(toplo2, aes(x = sampint, y = perloess, group = zone_name, color = zone_name, alpha = meanrich)) + 
-  scale_x_continuous(limits = c(0.5, 12.5)) + 
-  geom_line(aes(size = meanrich, alpha = meanrich)) + 
-  geom_text_repel(data = lbs, aes(label = zone_name), direction = 'y', xlim = c(0.5, 12.5), hjust = 0, nudge_x = 0.5, show.legend = F) + 
-  thm + 
-  scale_color_manual(values = colfun(length(unique(toplo2$zone_name)))) +
-  scale_size(range = c(0.4, 2), breaks = brks) +
-  scale_alpha_continuous(breaks = brks, range = c(0.6, 1)) +
-  guides(color = 'none') +
-  labs(
-    y = 'Species richness estimate, % loss', 
-    x = 'Sampling distance every x meters', 
-    alpha = 'Mean richness across sites, years', 
-    size = 'Mean richness across sites, years'
-  )
-
-toplo3 <- lbs 
-
-mod <- lm(perloess ~ meanrich, data = toplo3) %>% 
+mod <- lm(per ~ spprch, data = toplo2) %>% 
   summary() %>% 
   .$coefficients %>% 
   .[2, 4] %>% 
   format.pval(., eps = 0.05)
 
-p4 <- ggplot(toplo3, aes(x = meanrich, y =perloess)) + 
-  geom_point(aes(color = zone_name)) + 
-  geom_text_repel(aes(label = zone_name, color = zone_name), size = 2.5, segment.color = NA) +
-  scale_color_manual(values = colfun(length(unique(toplo2$zone_name)))) +
+p <- ggplot(toplo2, aes(x = spprch, y = per)) + 
+  geom_point(aes(color = site)) + 
+  # geom_text_repel(aes(label = site, color = site), size = 2.5, segment.color = NA) +
+  scale_color_manual(values = colfun(length(unique(toplo2$site)))) +
   geom_smooth(method = 'lm') + 
-  guides(color = 'none') +
   thm + 
+  guides(
+    color = guide_legend(nrow = 3)
+  ) +
   labs(
-    x = 'Average species richness by zone', 
+    color = NULL,
+    x = 'Actual richness by zone', 
     y = 'Total percent loss from 0.5 m to 10 m sampling',
-    subtitle = 'Total loss with reduced sampling as a function of average richness', 
+    subtitle = 'Total loss with reduced sampling as a function of actual richness', 
     caption = paste('Model significant, p ', mod)
   )
 
-jpeg(here('figs/richzone.jpg'), height = 11, width = 11, family = fml, units = 'in', res = 400)
-print(p1)
-dev.off()
-
-jpeg(here('figs/richzoneper.jpg'), height = 11, width = 11, family = fml, units = 'in', res = 400)
-print(p2)
-dev.off()
-
-jpeg(here('figs/richzonesum.jpg'), height = 8, width = 12, family = fml, units = 'in', res = 400)
-print(p3)
-dev.off()
-
-jpeg(here('figs/richzoneloss.jpg'), height = 6, width = 6.5, family = fml, units = 'in', res = 400)
-print(p4)
+jpeg(here('figs/richzoneloss.jpg'), height = 6.5, width = 7, family = fml, units = 'in', res = 400)
+print(p)
 dev.off()
 
 # frequency occurrence by sites -------------------------------------------
