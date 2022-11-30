@@ -947,7 +947,7 @@ mod <- lm(log10(maxvar) ~ foest, data = toplo3) %>%
   summary() %>% 
   .$coefficients %>% 
   .[2, 4] %>% 
-  format.pval(., eps = 0.05)
+  round(., 2)
 
 p4 <- ggplot(toplo3, aes(x = foest, y = maxvar)) + 
   geom_point(aes(color = species)) +
@@ -958,8 +958,8 @@ p4 <- ggplot(toplo3, aes(x = foest, y = maxvar)) +
     x = 'Actual frequency occurrence',
     y = 'Final variance at 10 m sampling (log-transformed)', 
     color = NULL,
-    subtitle = 'Variance of elevation estimate with reduced effort',
-    caption = paste('Model significant, p ', mod)
+    subtitle = 'Variance of elevation estimate with frequency occurrence',
+    caption = paste('Model insignificant, p =', mod)
   )
 
 jpeg(here('figs/elevex.jpg'), height = 7.5, width = 9, family = fml, units = 'in', res = 400)
